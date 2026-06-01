@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href= CSS/style.css rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">    
+    <title>Multiplication Game</title>    
+    <link rel="icon" type="image/png" href="Favicon.svg">     
+    <style>
+      
+        .menu-container {
+    width: 40px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Spaces the bars */
+    margin: 20px;
+}
+
+.bar {
+    width: 25px; /* Make the lines shorter */
+    height: 3px; /* Make the lines thinner */
+    background-color: black;
+    border-radius: 2px; /* Slight rounding */
+}
+
+.dropdown-menu {
+    display: none; /* Initially hidden */
+    list-style: none;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid black;
+    position: absolute;
+    top: 60px; /* Position below menu */
+    left: 20px;
+}
+
+.dropdown-menu li {
+    padding: 8px;
+}
+
+.dropdown-menu a {
+    font-family: sans-serif;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+       
+        
+
+       
+    </style>
+</head>
+     <div class="menu-container" onclick="toggleMenu()">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+</div>
+
+<ul class="dropdown-menu">
+    <li><a href="Home.html">Home</a></li>
+    <li><a href="About.html">About</a></li>    
+</ul>
+     
+   
+   
+    
+        
+    <script>
+
+        function toggleMenu() {
+    let menu = document.querySelector('.dropdown-menu');
+    menu.style.display = menu.style.display === 'none' || menu.style.display === '' ? 'block' : 'none';
+}
+    
+    </script>    
+</body>
+</html>

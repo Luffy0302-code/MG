@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href= CSS/style.css rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">    
+    <title>Multiplication Game</title>    
+    <link rel="icon" type="image/png" href="Favicon.svg">     
+    <style>
+    
+
+        .menu-container {
+    width: 40px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Spaces the bars */
+    margin: 20px;
+}
+
+.bar {
+    width: 25px; /* Make the lines shorter */
+    height: 3px; /* Make the lines thinner */
+    background-color: black;
+    border-radius: 2px; /* Slight rounding */
+}
+
+
+.dropdown-menu li {
+    padding: 8px;
+}
+
+.dropdown-menu a {
+    font-family: sans-serif;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.menu-wrapper {
+    position: relative;      /* anchor for dropdown */
+    margin: 20px;
+    z-index: 10000;          /* whole block above rectangles */
+}
+
+.menu-container {
+    position: absolute;
+    top: 100%;                 /* align with wrapper margin */
+    left: 70%;                /* align with wrapper margin */
+
+    width: 40px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background 0.2s, border 0.2s;
+}
+
+.menu-container:hover {
+    background: #e0e0e0;
+}
+
+.menu-container.active {
+    background: #d0d0d0;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 60px;               /* ⭐ directly under the button */
+    left: 70%;                /* ⭐ right-aligned with the button */
+
+    display: none;
+    list-style: none;
+    padding: 10px;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 8px;
+    width: 150px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+
+
+
+.light-box {
+    width: 100%;
+    height: 25px;              /* adjust height */
+    background: #acacac;       /* light grey */
+               /* spacing */
+         /* optional */
+}
+
+.dark-box {
+    width: 71%;
+    height: 25px;              /* adjust height */
+    background: #444444;          /* dark grey / near black */
+            /* spacing */
+           /* optional */
+}
+
+.dark-box2 {
+position: absolute;
+    top: 54.5px;               /* ⭐ directly under the button */
+    left: 74%;                /* ⭐ right-aligned with the button */
+
+    width: 25.4%;
+    height: 25px;              /* adjust height */
+    background: #444444;          /* dark grey / near black */
+            /* spacing */
+           /* optional */
+}
+
+h1 {
+    position: relative;
+    z-index: 10000000;   /* ⭐ puts title OVER the rectangles */
+    margin: 20px;     /* adjust spacing as you like */
+    font-family: 'Segoe UI Light', sans-serif;
+}
+
+p {
+    right: 100%;
+               
+    left: 0%; 
+    font-family: 'Segoe UI Light', sans-serif;
+}
+
+.signup-box {
+    width: 300px;
+    padding: 20px;
+    background: white;
+    border: 2px solid black;
+    border-radius: 10px;
+    margin: 20px;
+}
+
+.signup-box input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+}
+
+.signup-box button {
+    width: 100%;
+    padding: 10px;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.signup-box button:hover {
+    background: #333;
+}
+
+.signup-box, .login-box {
+    width: 300px;
+    padding: 20px;
+    background: white;
+    border: 2px solid black;
+    border-radius: 10px;
+    margin: 20px;
+}
+
+.adbox {
+    left: 50%;
+    transform: translateX(430%);
+    
+    width: 300px;
+    padding: 20px;
+    background: white;
+    border: 2px solid black;
+    border-radius: 0px;
+    margin: 20px;
+    height: 100px;
+
+}
+
+.signup-box input,
+.login-box input {
+    width: 93%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+}
+
+.signup-box button,
+.login-box button {
+    width: 100%;
+    padding: 10px;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.signup-box button:hover,
+.login-box button:hover {
+    background: #333;
+}
+
+   
+    </style>
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5950143735611835"
+     crossorigin="anonymous"></script>
+</head>
+<body>
+<hr>
+
+<div class="menu-wrapper">
+    <div class="menu-container" onclick="toggleMenu()">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+
+    <ul class="dropdown-menu">
+        <li><a href="Website.html">Home</a></li>
+        <li><a href="About.html">About</a></li>
+    </ul>
+</div>
+
+
+<div class="light-box"></div>
+<div class="dark-box"></div>
+<div class="dark-box2"></div>
+
+
+<hr>
+<h1>Welcome to MG!</h1>
+<p>Test your skills and have fun! You can start by signing up for an account.</p>
+
+<div class="signup-box">
+    <h2>Create Account</h2>
+    <form id="signupForm">
+        <input type="text" id="username" placeholder="Username" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button type="submit">Sign Up</button>
+    </form>
+    <p id="signupMessage"></p>
+</div>
+
+<div class="login-box">
+    <h2>Log In</h2>
+    <form id="loginForm">
+        <input type="text" id="li-username" placeholder="Username" required>
+        <input type="password" id="li-password" placeholder="Password" required>
+        <button type="submit">Log In</button>
+    </form>
+    <p id="loginMessage"></p>
+</div>
+
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-5950143735611835"
+     data-ad-slot="7572554631"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+    <script>
+
+        function toggleMenu() {
+    let menu = document.querySelector('.dropdown-menu');
+    menu.style.display = menu.style.display === 'none' || menu.style.display === '' ? 'block' : 'none';
+}
+
+function toggleMenu() {
+    let menu = document.querySelector('.dropdown-menu');
+    let icon = document.querySelector('.menu-container');
+
+    let isOpen = menu.style.display === 'block';
+
+    menu.style.display = isOpen ? 'none' : 'block';
+
+    // Add/remove active class
+    if (isOpen) {
+        icon.classList.remove('active');
+    } else {
+        icon.classList.add('active');
+    }
+}
+
+// Close dropdown when clicking anywhere else
+document.addEventListener('click', function(event) {
+    const menu = document.querySelector('.dropdown-menu');
+    const icon = document.querySelector('.menu-container');
+
+    // If click is NOT inside the menu or the icon → close it
+    if (!menu.contains(event.target) && !icon.contains(event.target)) {
+        menu.style.display = 'none';
+        icon.classList.remove('active');
+    }
+});
+
+document.getElementById("signupForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let user = document.getElementById("username").value;
+    let email = document.getElementById("email").value;
+
+    document.getElementById("signupMessage").innerText =
+        "Account created for " + user + "!";
+});
+
+// Get existing users from localStorage or start with empty array
+function getUsers() {
+    return JSON.parse(localStorage.getItem('users') || '[]');
+}
+
+function saveUsers(users) {
+    localStorage.setItem('users', JSON.stringify(users));
+}
+
+// SIGN UP
+document.getElementById('signupForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const username = document.getElementById('su-username').value.trim();
+    const email    = document.getElementById('su-email').value.trim();
+    const password = document.getElementById('su-password').value;
+
+    let users = getUsers();
+
+    // check if username already exists
+    if (users.some(u => u.username === username)) {
+        document.getElementById('signupMessage').innerText = 'Username already taken.';
+        return;
+    }
+
+    users.push({ username, email, password });
+    saveUsers(users);
+
+    document.getElementById('signupMessage').innerText = 'Account created for ' + username + '!';
+    document.getElementById('signupForm').reset();
+});
+
+// LOGIN
+document.getElementById('loginForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const username = document.getElementById('li-username').value.trim();
+    const password = document.getElementById('li-password').value;
+
+    let users = getUsers();
+
+    const match = users.find(u => u.username === username && u.password === password);
+
+    if (match) {
+        document.getElementById('loginMessage').innerText = 'Welcome, ' + username + '!';
+        // here you could set a "currentUser" in localStorage
+        localStorage.setItem('currentUser', username);
+    } else {
+        document.getElementById('loginMessage').innerText = 'Invalid username or password.';
+    }
+});
+
+
+
+
+        
+   
+    </script>    
+</body>
+</html>

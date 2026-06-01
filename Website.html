@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">    
+    <title>Multiplication Game</title>    
+    <link rel="icon" type="image/png" href="Favicon.svg">     
+    <style>
+        #searchBar {
+            display: block;
+            margin-top: 20px;
+            width: 300px;
+            height: 40px;
+            font-size: 25px;
+            padding: 5px;
+        }
+
+        .menu-container {
+    width: 40px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 5px; /* Spaces the bars */
+    margin: 20px;
+}
+
+.bar {
+    width: 25px; /* Make the lines shorter */
+    height: 3px; /* Make the lines thinner */
+    background-color: black;
+    border-radius: 2px; /* Slight rounding */
+}
+
+.dropdown-menu {
+    display: none; /* Initially hidden */
+    list-style: none;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid black;
+    position: absolute;
+    top: 60px; /* Position below menu */
+    left: 20px;
+}
+
+.dropdown-menu li {
+    padding: 8px;
+}
+
+.dropdown-menu a {
+    font-family: sans-serif;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+       
+        
+ 
+    #resultBox {
+        margin-top: 15px;
+        padding: 10px 15px;
+        border: 2px solid #333;
+        border-radius: 8px;
+        background: #f0f0f0;
+        display: none; /* hidden until needed */
+        width: 300px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center; 
+        min-width: 200px;
+
+    }
+
+    #result.correct {
+        color: green;
+    }
+
+    #result.wrong {
+        color: red;
+    }
+
+    #gameContainer {
+    text-align: center;      /* centers text + inline elements */
+    width: 100%;             /* full width */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.menu-container {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dropdown-menu {
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+
+
+
+
+
+    </style>
+
+    
+
+</head>
+<body>
+     <div class="menu-container" onclick="toggleMenu()">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+</div>
+
+<ul class="dropdown-menu">
+    <li><a href="Home.html">Home</a></li>
+    <li><a href="About.html">About</a></li>    
+</ul>
+     
+   
+    <hr>
+    <div id="gameContainer">
+    <h2>Multiply the Numbers:</h2>    
+    <p id="num1"></p>
+    <p id="num2"></p>
+    <input type="number" id="searchBar" placeholder="Answer">
+    
+    
+     <div id="resultBox">
+    <span id="result"></span>
+</div>
+</div>
+      
+    <br>
+    <hr>
+    
+        
+    <script>
+
+        function toggleMenu() {
+    let menu = document.querySelector('.dropdown-menu');
+    menu.style.display = menu.style.display === 'none' || menu.style.display === '' ? 'block' : 'none';
+}
+        
+        function generateQuestion() {
+            // Generate two random numbers
+            num1 = Math.floor(Math.random() * 10) + 1;
+            num2 = Math.floor(Math.random() * 10) + 1;
+
+            // Display the numbers
+            document.getElementById("num1").innerText = `${num1} x  ${num2}`;            
+            document.getElementById("result").innerText = "";
+            document.getElementById("searchBar").value = "";
+        }
+
+        function checkAnswer() {
+            let userInput = document.getElementById("searchBar").value;
+            let correctAnswer = num1 * num2;
+
+            if (parseInt(userInput) === correctAnswer) {
+                document.getElementById("result").innerText = "Correct!";
+            } else {
+                document.getElementById("result").innerText = "Try again!";
+            }
+
+            // Wait 1 seconds before generating a new question
+            setTimeout(generateQuestion, 1000);
+        }
+
+        // Generate the first question
+        generateQuestion();
+
+        // Add event listener for Enter key press
+        document.getElementById("searchBar").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                checkAnswer();
+            }
+        });
+
+   function checkAnswer() {
+    let userInput = document.getElementById("searchBar").value;
+    let correctAnswer = num1 * num2;
+
+    let resultBox = document.getElementById("resultBox");
+    let resultText = document.getElementById("result");
+
+    resultBox.style.display = "block"; // show the box
+
+    if (parseInt(userInput) === correctAnswer) {
+        resultText.innerText = "Correct!";
+        resultText.className = "correct";
+    } else {
+        resultText.innerText = "Try again!";
+        resultText.className = "wrong";
+    }
+
+    setTimeout(generateQuestion, 1000);
+}
+
+    </script>
+
+    
+</body>
+</html>

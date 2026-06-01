@@ -1,0 +1,53 @@
+
+
+#num1 { 
+
+    font-size: 30px; /* Adjust size as needed */    
+    text-align: center;
+    position: relative;
+    top: 50px; /* Moves it down by 50 pixels */
+}
+
+#searchBar {    
+    margin-left: 500px; /* Adjust as needed */
+    position: relative;
+    top: 50px; /* Moves it down by 50 pixels */    
+    display: block;
+    margin-top: 20px;
+    width: 300px;
+    height: 40px;
+    font-size: 25px;
+    padding: 5px;
+    text-align: center; /* Centers text horizontally */
+    line-height: 40px; /* Centers text vertically */    
+    display: block;
+    margin: 0 auto; /* Centers horizontally */
+}
+
+#result {
+    font-size: 30px; /* Adjust size as needed */    
+    text-align: center;
+    position: relative;
+    top: 50px; /* Moves it down by 50 pixels */
+}
+
+p {
+    font-family: sans-serif;
+    text-align: center;
+    position: relative;
+}
+
+h2 {
+    font-family: sans-serif;
+    text-align: center;
+    position: relative;
+}
+
+
+
+
+
+
+
+     
+
