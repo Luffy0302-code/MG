@@ -9,7 +9,47 @@
     <link rel="icon" type="image/png" href="Favicon.svg">     
     <style>
 
-        dropdown-menu {
+  .dropdown-menu li {
+    padding: 8px;
+}
+
+.dropdown-menu a {
+    font-family: sans-serif;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.menu-wrapper {
+    position: relative;      /* anchor for dropdown */
+    margin: 20px;
+    z-index: 10000;          /* whole block above rectangles */
+}
+
+.menu-container {
+    position: absolute;
+    top: 100%;                 /* align with wrapper margin */
+    left: 70%;                /* align with wrapper margin */
+
+    width: 40px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px;
+    border-radius: 8px;
+    transition: background 0.2s, border 0.2s;
+}
+
+.menu-container:hover {
+    background: #e0e0e0;
+}
+
+.menu-container.active {
+    background: #d0d0d0;
+}
+
+.dropdown-menu {
     position: absolute;
     top: 60px;               /* ⭐ directly under the button */
     left: 70%;                /* ⭐ right-aligned with the button */
@@ -23,7 +63,6 @@
     width: 150px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
-
 
         #searchBar {
             display: block;
