@@ -103,7 +103,7 @@
 
 h1 {
     position: relative;
-    z-index: 10000000;   /* ⭐ puts title OVER the rectangles */
+    z-index: 10;   /* ⭐ puts title OVER the rectangles */
     margin: 20px;     /* adjust spacing as you like */
     font-family: 'Segoe UI Light', sans-serif;
     color: white;
@@ -216,7 +216,7 @@ p {
     
 }
 
-   .side-tray {
+ .side-tray {
     position: fixed;
     top: 0;
     right: 0;
@@ -230,13 +230,14 @@ p {
     flex-direction: column;
     gap: 20px;
     transition: transform 0.3s ease;
-    transform: translateX(100%); /* fully hidden */
+    transform: translateX(100%); /* hidden */
     z-index: 1000000000; /* above overlay */
 }
 
 .side-tray.open {
-    transform: translateX(0); /* slide in */
+    transform: translateX(0); /* visible */
 }
+
 
 
    /* Blurred background overlay */
@@ -251,14 +252,14 @@ p {
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
-    z-index: 999998;
+    z-index: 999999999; /* under tray */
 }
 
-/* When tray opens */
 .overlay.show {
     opacity: 1;
     pointer-events: auto;
 }
+
 
 /* Slide-out tray */
 
@@ -338,7 +339,6 @@ document.getElementById("overlay").addEventListener("click", function () {
     document.getElementById("sideTray").classList.remove("open");
     document.getElementById("overlay").classList.remove("show");
 });
-
 
 document.getElementById("signupForm").addEventListener("submit", function(e) {
     e.preventDefault();
