@@ -216,10 +216,10 @@ p {
     
 }
 
-        .side-tray {
+   .side-tray {
     position: fixed;
     top: 0;
-    right: -250px; /* hidden off-screen */
+    right: 0;
     width: 250px;
     height: 100%;
     background: white;
@@ -229,21 +229,15 @@ p {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    transition: right 0.3s ease;
-    z-index: 999999;
-}
-
-.side-tray a {
-    font-family: sans-serif;
-    font-size: 20px;
-    color: black;
-    text-decoration: none;
-    font-weight: bold;
+    transition: transform 0.3s ease;
+    transform: translateX(100%); /* fully hidden */
+    z-index: 1000000000; /* above overlay */
 }
 
 .side-tray.open {
-    right: 0; /* slide in */
+    transform: translateX(0); /* slide in */
 }
+
 
    /* Blurred background overlay */
 .overlay {
@@ -267,26 +261,7 @@ p {
 }
 
 /* Slide-out tray */
-.side-tray {
-    position: fixed;
-    top: 0;
-    right: -250px; /* fully hidden */
-    width: 250px;
-    height: 100%;
-    background: white;
-    border-left: 2px solid black;
-    box-shadow: -4px 0 10px rgba(0,0,0,0.2);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    transition: right 0.3s ease;
-    z-index: 1000000000; /* ⭐ above overlay */
-}
 
-.side-tray.open {
-    right: calc(-1 * 250px);
-}
 
 /* Close button */
 .close-btn {
@@ -359,19 +334,9 @@ function toggleMenu() {
     overlay.classList.toggle("show");
 }
 
-// Close dropdown when clicking anywhere else
-document.addEventListener("click", function(event) {
-    const tray = document.getElementById("sideTray");
-    const overlay = document.getElementById("overlay");
-    const icon = document.querySelector(".menu-container");
-
-    if (!tray.contains(event.target) && 
-        !icon.contains(event.target) && 
-        tray.classList.contains("open")) 
-    {
-        tray.classList.remove("open");
-        overlay.classList.remove("show");
-    }
+document.getElementById("overlay").addEventListener("click", function () {
+    document.getElementById("sideTray").classList.remove("open");
+    document.getElementById("overlay").classList.remove("show");
 });
 
 
@@ -435,11 +400,6 @@ document.getElementById('loginForm').addEventListener('submit', function (e) {
     } else {
         document.getElementById('loginMessage').innerText = 'Invalid username or password.';
     }
-});
-
-        document.getElementById("overlay").addEventListener("click", function () {
-    document.getElementById("sideTray").classList.remove("open");
-    document.getElementById("overlay").classList.remove("show");
 });
 
 
