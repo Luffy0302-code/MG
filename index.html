@@ -216,6 +216,35 @@ p {
     
 }
 
+        .side-tray {
+    position: fixed;
+    top: 0;
+    right: -250px; /* hidden off-screen */
+    width: 250px;
+    height: 100%;
+    background: white;
+    border-left: 2px solid black;
+    box-shadow: -4px 0 10px rgba(0,0,0,0.2);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transition: right 0.3s ease;
+    z-index: 999999;
+}
+
+.side-tray a {
+    font-family: sans-serif;
+    font-size: 20px;
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.side-tray.open {
+    right: 0; /* slide in */
+}
+
    
     </style>
 
@@ -230,12 +259,12 @@ p {
         <img src="menu_icon_244496 (1).svg" class="menu-icon">
     </div>
 
-    <ul class="dropdown-menu">
-        
-        <li><a href="About.html">About</a></li>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="Website.html">Site</a></li>
-    </ul>
+   <div id="sideTray" class="side-tray">
+    <a href="About.html">About</a>
+    <a href="index.html">Home</a>
+    <a href="Website.html">Site</a>
+</div>
+
 </div>
 
 
@@ -266,32 +295,21 @@ p {
 }
 
 function toggleMenu() {
-    let menu = document.querySelector('.dropdown-menu');
-    let icon = document.querySelector('.menu-container');
-
-    let isOpen = menu.style.display === 'block';
-
-    menu.style.display = isOpen ? 'none' : 'block';
-
-    // Add/remove active class
-    if (isOpen) {
-        icon.classList.remove('active');
-    } else {
-        icon.classList.add('active');
-    }
+    const tray = document.getElementById("sideTray");
+    tray.classList.toggle("open");
 }
+
 
 // Close dropdown when clicking anywhere else
 document.addEventListener('click', function(event) {
-    const menu = document.querySelector('.dropdown-menu');
+    const tray = document.getElementById("sideTray");
     const icon = document.querySelector('.menu-container');
 
-    // If click is NOT inside the menu or the icon → close it
-    if (!menu.contains(event.target) && !icon.contains(event.target)) {
-        menu.style.display = 'none';
-        icon.classList.remove('active');
+    if (!tray.contains(event.target) && !icon.contains(event.target)) {
+        tray.classList.remove("open");
     }
 });
+
 
 document.getElementById("signupForm").addEventListener("submit", function(e) {
     e.preventDefault();
