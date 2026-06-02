@@ -270,7 +270,7 @@ p {
 .side-tray {
     position: fixed;
     top: 0;
-    right: -250px;
+    right: -250px; /* fully hidden */
     width: 250px;
     height: 100%;
     background: white;
@@ -281,12 +281,11 @@ p {
     flex-direction: column;
     gap: 20px;
     transition: right 0.3s ease;
-    z-index: 999999;
+    z-index: 1000000000; /* ⭐ above overlay */
 }
 
-/* Tray open state */
 .side-tray.open {
-    right: 0;
+    right: calc(-1 * 250px);
 }
 
 /* Close button */
@@ -436,6 +435,11 @@ document.getElementById('loginForm').addEventListener('submit', function (e) {
     } else {
         document.getElementById('loginMessage').innerText = 'Invalid username or password.';
     }
+});
+
+        document.getElementById("overlay").addEventListener("click", function () {
+    document.getElementById("sideTray").classList.remove("open");
+    document.getElementById("overlay").classList.remove("show");
 });
 
 
